@@ -16,217 +16,132 @@ void main() {
     ),
   ));
 }
-
 class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  var _score = 0;
-  var _higestScore = 0;
-  var _imageName = 0;
-  var _index1 = 0;
-  var _index2 = 0;
-  bool _isGameOver = false;
-  final _random = Random.secure();
-
-  final _imageList = <String>[
-    'img/bean.PNG',
-    'img/bird.PNG',
-    'img/boy.PNG',
-    'img/girl.PNG',
-    'img/jerry.PNG',
-    'img/miky.PNG',
+  var _score=0;
+  var _higestScore=0;
+  var _sum=0;
+  var _index1=0;
+  var _index2=0;
+  var _rand1=0;
+  var _rand2=0;
+  var _rand3=0;
+  var a=0;
+  var b=0;
+  var c=0;
+  var d=0;
+  var _isGameOver=false;
+  List<int> list=[];
+  final _random=Random.secure();
+  final _diceList=<String>[
+    'img/d1.png',
+    'img/d2.png',
+    'img/d3.png',
+    'img/d4.png',
+    'img/d5.png',
+    'img/d6.png',
   ];
-  List names = ['Mr.bean', 'Bird', 'Boy', 'Girl', 'Jerry', 'Mikey'];
+
+
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            "Score :$_score",
-            style: const TextStyle(fontSize: 30),
-          ),
-          Text(
-            "Higest Score :$_higestScore",
-            style: TextStyle(fontSize: 30),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Image.asset(
-                _imageList[_index1],
-                width: 220,
-                height: 220,
-              ),
-              // Image.asset(_imageList[_index2],width: 120,height: 120,),
-            ],
-          ),
-          Text(
-            "Image Name :$_imageName",
-            style: TextStyle(fontSize: 30),
-          ),
-          if (_isGameOver)
-            const Text(
-              "GAME OVER",
-              style: TextStyle(fontSize: 30, color: Colors.red),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Higest Score :$_higestScore',style: TextStyle(fontSize: 30),),
+            Text('Score :$_score',style: TextStyle(fontSize: 30),),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Image.asset(_diceList[_index1],height: 100,width: 100,),
+                Image.asset(_diceList[_index2],height: 100,width: 100,),
+              ],
             ),
-          ElevatedButton(onPressed: _roll, child: Text("Roll")),
-          // SizedBox(
-          //   height: 50,
-          //   child: Expanded(child: ListView(
-          //
-          //     scrollDirection: Axis.horizontal,
-          //     children: [
-          //
-          //       Padding(
-          //         padding: const EdgeInsets.all(8.0),
-          //         child: ElevatedButton(onPressed: checkImg(0), child: Text("Mr.Bean"),),
-          //       ),
-          //       Padding(
-          //         padding: const EdgeInsets.all(8.0),
-          //         child: ElevatedButton(onPressed: checkImg(1), child: Text("Bird")),
-          //       ),
-          //       Padding(
-          //         padding: const EdgeInsets.all(8.0),
-          //         child: ElevatedButton(onPressed: checkImg(2), child: Text("Boy")),
-          //       ),
-          //       Padding(
-          //         padding: const EdgeInsets.all(8.0),
-          //         child: ElevatedButton(onPressed: checkImg(3), child: Text("Girl")),
-          //       ),
-          //       Padding(
-          //         padding: const EdgeInsets.all(8.0),
-          //         child: ElevatedButton(onPressed: checkImg(4), child: Text("Jerry")),
-          //       ),
-          //       Padding(
-          //         padding: const EdgeInsets.all(8.0),
-          //         child: ElevatedButton(onPressed: checkImg(5), child: Text("Mikey")),
-          //       )
-          //     ],
-          //   )),
-          // )
-          Container(
-            height: 50,
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-                itemCount: names.length,
-                itemBuilder: (context, index) {
+            Text('sum :$_sum',style: TextStyle(fontSize: 20),),
+            if(_isGameOver)Text("G A M E  O V E R",style: TextStyle(fontSize: 30,color: Colors.red),),
+           Padding(
+             padding: const EdgeInsets.all(8.0),
+             child: Row(children: [
+               Expanded(child: ElevatedButton(onPressed:(){checkRes(a);}, child: Text("$a")),),
+               SizedBox(width: 8,),
+               Expanded(child: ElevatedButton(onPressed:(){checkRes(b);}, child: Text("$b")),),
+             ],),
+           ),
 
-                  return InkWell(
-                    onTap: (){
-                      if(names[index]=='Mr.bean'){checkImg(0);}
-                      if(names[index]=='Bird'){checkImg(1);}
-                      if(names[index]=='Boy'){checkImg(2);}
-                      if(names[index]=='Girl'){checkImg(3);}
-                      if(names[index]=='Jerry'){checkImg(4);}
-                      if(names[index]=='Mikey'){checkImg(5);}
-                    },
-                    child: Container(
-
-                      padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                      margin: EdgeInsets.symmetric(horizontal: 5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.blue
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Center(
-                          child: Text(
-                            names[index],
-                            style: TextStyle(fontSize: 20,color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                }),
-          ),
-        ],
+           Padding(
+             padding: const EdgeInsets.all(8.0),
+             child: Row(children: [
+               Expanded(child: ElevatedButton(onPressed:(){checkRes(c);}, child: Text("$c")),),
+               SizedBox(width: 8,),
+               Expanded(child: ElevatedButton(onPressed:(){checkRes(d);}, child: Text("$d")),),
+             ],),
+           ),
+            ElevatedButton(onPressed:_rollTheDice, child: Text("Roll")),
+          ],
+        ),
       ),
     );
   }
 
-  void _roll() {
+  void _rollTheDice() {
+
+
     setState(() {
-      _index1 = _random.nextInt(6);
-      _index2 = _random.nextInt(6);
-      //
+      _index1=_random.nextInt(6);
+      _index2=_random.nextInt(6);
+      _rand1=_random.nextInt(12);
+      _rand2=_random.nextInt(12);
+      _rand3=_random.nextInt(12);
+
+      _sum = _index1 + _index2 + 2;
+      _score =_score +_index1 + _index2 + 2;
+
+      suffle(_rand1,_rand2,_rand3,_sum);
+
     });
+
   }
 
-  checkImg(int i) {
-    int b=i;
-    if(b==0)
+  void suffle(int rand1, int rand2, int rand3, int sum) {
+
+    list = [rand1, rand2, rand3,sum];
+    list.shuffle();
+    print(list);
+
+    a=list[0];
+    b=list[1];
+    c=list[2];
+    d=list[3];
+    print("$a"+" ""$b"+" "+"$c"+" ""$d");
+
+
+  }
+
+  checkRes(int a) {
+
+    print(a);
+    int aa=a;
+    if(aa==_sum)
       {
-       if(_index1==0)
-       {
-         print('PERFECT');
-       }
-       else
-         {
-           print('ERROR');
-         }
+        _rollTheDice();
       }
-    if(b==1)
-    {
-      if(_index1==1)
+    else
       {
-        print('PERFECT');
+        print("ERROR");
+        final snackBar = SnackBar(content: Center(child: Text("G A M E  O V E R",style: TextStyle(fontSize: 20,color: Colors.red,),)));
+
+// Find the ScaffoldMessenger in the widget tree
+// and use it to show a SnackBar.
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
-      else
-      {
-        print('ERROR');
-      }
-    }
-    if(b==2)
-    {
-      if(_index1==2)
-      {
-        print('PERFECT');
-      }
-      else
-      {
-        print('ERROR');
-      }
-    }
-    if(b==3)
-    {
-      if(_index1==3)
-      {
-        print('PERFECT');
-      }
-      else
-      {
-        print('ERROR');
-      }
-    }
-    if(b==4)
-    {
-      if(_index1==4)
-      {
-        print('PERFECT');
-      }
-      else
-      {
-        print('ERROR');
-      }
-    }
-    if(b==5)
-    {
-      if(_index1==5)
-      {
-        print('PERFECT');
-      }
-      else
-      {
-        print('ERROR');
-      }
-    }
   }
 }
+
