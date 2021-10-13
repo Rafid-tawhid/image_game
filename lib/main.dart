@@ -93,7 +93,6 @@ class _HomePageState extends State<HomePage> {
 
   void _rollTheDice() {
 
-
     setState(() {
       _index1=_random.nextInt(6);
       _index2=_random.nextInt(6);
@@ -102,7 +101,7 @@ class _HomePageState extends State<HomePage> {
       _rand3=_random.nextInt(12);
 
       _sum = _index1 + _index2 + 2;
-      _score =_score +_index1 + _index2 + 2;
+      // _score =_score +_index1 + _index2 + 2;
 
       suffle(_rand1,_rand2,_rand3,_sum);
 
@@ -130,6 +129,8 @@ class _HomePageState extends State<HomePage> {
     int aa = a;
     if (aa == _sum) {
       _rollTheDice();
+      _score++;
+      
     }
     else {
       print("ERROR");
