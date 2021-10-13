@@ -126,22 +126,41 @@ class _HomePageState extends State<HomePage> {
   }
 
   checkRes(int a) {
-
     print(a);
-    int aa=a;
-    if(aa==_sum)
-      {
-        _rollTheDice();
-      }
-    else
-      {
-        print("ERROR");
-        final snackBar = SnackBar(content: Center(child: Text("G A M E  O V E R",style: TextStyle(fontSize: 20,color: Colors.red,),)));
+    int aa = a;
+    if (aa == _sum) {
+      _rollTheDice();
+    }
+    else {
+      print("ERROR");
 
-// Find the ScaffoldMessenger in the widget tree
-// and use it to show a SnackBar.
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-      }
+      final snackBar = SnackBar(content: Center(
+        child: Column(
+          children: [
+            SizedBox(height: 250,),
+            Center(
+              child: Text("W R O N G   A N S W E R",
+                style: TextStyle(fontSize: 25, color: Colors.red,),),
+            ),
+            SizedBox(height: 50,),
+            ElevatedButton(onPressed: (){
+              snacks();
+            }, child: Text("Play Again")),
+          ],
+        ),
+      ),duration: Duration(seconds: 15),);
+
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+
+
+
+    }
+  }
+
+  void snacks() {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    _rollTheDice();
   }
 }
 
