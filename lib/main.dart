@@ -40,12 +40,16 @@ class _HomePageState extends State<HomePage> {
   List<int> list=[];
   final _random=Random.secure();
   final _diceList=<String>[
-    'img/d1.png',
-    'img/d2.png',
-    'img/d3.png',
-    'img/d4.png',
-    'img/d5.png',
-    'img/d6.png',
+    'img/nm1.JPG',
+    'img/nm2.JPG',
+    'img/nm3.JPG',
+    'img/nm4.JPG',
+    'img/nm5.JPG',
+    'img/nm6.JPG',
+    'img/nm7.JPG',
+    'img/nm8.JPG',
+    'img/nm9.JPG',
+
   ];
 
 
@@ -61,29 +65,161 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Image.asset(_diceList[_index1],height: 100,width: 100,),
-                Image.asset(_diceList[_index2],height: 100,width: 100,),
+                Container(
+                  margin: EdgeInsets.all(15),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(_diceList[_index1],height: 70,width: 70,),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset('img/plus.JPG',height: 60,width: 60,),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(_diceList[_index2],height: 70,width: 70,),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
-            Text('sum :$_sum',style: TextStyle(fontSize: 20),),
+            // Text('sum :$_sum',style: TextStyle(fontSize: 20),),
+            SizedBox(height: 20,),
             if(_isGameOver)Text("G A M E  O V E R",style: TextStyle(fontSize: 30,color: Colors.red),),
            Padding(
              padding: const EdgeInsets.all(8.0),
              child: Row(children: [
-               Expanded(child: ElevatedButton(onPressed:(){checkRes(a);}, child: Text("$a")),),
+               Expanded(child:Container(
+                 height: 35.0,
+
+                 child: RaisedButton(
+                   onPressed: () {checkRes(a);},
+                   shape: RoundedRectangleBorder(
+                       borderRadius: BorderRadius.circular(80.0)),
+                   padding: EdgeInsets.all(0.0),
+                   child: Ink(
+                     decoration: BoxDecoration(
+                         gradient: LinearGradient(
+                           colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                           begin: Alignment.centerLeft,
+                           end: Alignment.centerRight,
+                         ),
+                         borderRadius: BorderRadius.circular(30.0)),
+                     child: Container(
+                       constraints:
+                       BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
+                       alignment: Alignment.center,
+                       child: Text(
+                         "$a",
+                         textAlign: TextAlign.center,
+                         style: TextStyle(color: Colors.white, fontSize: 15),
+                       ),
+                     ),
+                   ),
+                 ),
+               ),),
                SizedBox(width: 8,),
-               Expanded(child: ElevatedButton(onPressed:(){checkRes(b);}, child: Text("$b")),),
+               Expanded(child:Container(
+                 height: 35.0,
+
+                 child: RaisedButton(
+                   onPressed: () {checkRes(b);},
+                   shape: RoundedRectangleBorder(
+                       borderRadius: BorderRadius.circular(80.0)),
+                   padding: EdgeInsets.all(0.0),
+                   child: Ink(
+                     decoration: BoxDecoration(
+                         gradient: LinearGradient(
+                           colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                           begin: Alignment.centerLeft,
+                           end: Alignment.centerRight,
+                         ),
+                         borderRadius: BorderRadius.circular(30.0)),
+                     child: Container(
+                       constraints:
+                       BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
+                       alignment: Alignment.center,
+                       child: Text(
+                         "$b",
+                         textAlign: TextAlign.center,
+                         style: TextStyle(color: Colors.white, fontSize: 15),
+                       ),
+                     ),
+                   ),
+                 ),
+               ),),
+
+
              ],),
-           ),
+           ), //buttns1,2
 
            Padding(
              padding: const EdgeInsets.all(8.0),
              child: Row(children: [
-               Expanded(child: ElevatedButton(onPressed:(){checkRes(c);}, child: Text("$c")),),
+               Expanded(child:Container(
+                 height: 35.0,
+
+                 child: RaisedButton(
+                   onPressed: () {checkRes(c);},
+                   shape: RoundedRectangleBorder(
+                       borderRadius: BorderRadius.circular(80.0)),
+                   padding: EdgeInsets.all(0.0),
+                   child: Ink(
+                     decoration: BoxDecoration(
+                         gradient: LinearGradient(
+                           colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                           begin: Alignment.centerLeft,
+                           end: Alignment.centerRight,
+                         ),
+                         borderRadius: BorderRadius.circular(30.0)),
+                     child: Container(
+                       constraints:
+                       BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
+                       alignment: Alignment.center,
+                       child: Text(
+                         "$c",
+                         textAlign: TextAlign.center,
+                         style: TextStyle(color: Colors.white, fontSize: 15),
+                       ),
+                     ),
+                   ),
+                 ),
+               ),),
                SizedBox(width: 8,),
-               Expanded(child: ElevatedButton(onPressed:(){checkRes(d);}, child: Text("$d")),),
+               Expanded(child:Container(
+                 height: 35.0,
+
+                 child: RaisedButton(
+                   onPressed: () {checkRes(d);},
+                   shape: RoundedRectangleBorder(
+                       borderRadius: BorderRadius.circular(80.0)),
+                   padding: EdgeInsets.all(0.0),
+                   child: Ink(
+                     decoration: BoxDecoration(
+                         gradient: LinearGradient(
+                           colors: [Color(0xff374ABE), Color(0xff64B6FF)],
+                           begin: Alignment.centerLeft,
+                           end: Alignment.centerRight,
+                         ),
+                         borderRadius: BorderRadius.circular(30.0)),
+                     child: Container(
+                       constraints:
+                       BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
+                       alignment: Alignment.center,
+                       child: Text(
+                         "$d",
+                         textAlign: TextAlign.center,
+                         style: TextStyle(color: Colors.white, fontSize: 15),
+                       ),
+                     ),
+                   ),
+                 ),
+               ),),
              ],),
-           ),
+           ),//buttns3,4
             ElevatedButton(onPressed:_rollTheDice, child: Text("Roll")),
           ],
         ),
@@ -94,11 +230,11 @@ class _HomePageState extends State<HomePage> {
   void _rollTheDice() {
 
     setState(() {
-      _index1=_random.nextInt(6);
-      _index2=_random.nextInt(6);
-      _rand1=_random.nextInt(12);
-      _rand2=_random.nextInt(12);
-      _rand3=_random.nextInt(12);
+      _index1=_random.nextInt(9);
+      _index2=_random.nextInt(9);
+      _rand1=_random.nextInt(18);
+      _rand2=_random.nextInt(18);
+      _rand3=_random.nextInt(18);
 
       _sum = _index1 + _index2 + 2;
       // _score =_score +_index1 + _index2 + 2;
